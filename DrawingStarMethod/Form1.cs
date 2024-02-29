@@ -17,30 +17,31 @@ namespace DrawingStarMethod
             InitializeComponent();
         }
 
+        private int map(int value, int fromLow, int fromHigh, int toLow, int toHigh) { //stolen mapping function
+            return (value - fromLow) * (toHigh - toLow) / (fromHigh - fromLow) + toLow;
+        }
+
+        void fluctuateValue(Star star, int value, int period, int minVal, int maxVal) {
+            float kVal = (2 * Math.PI) / period;
+
+            value = map (Math.Sin(kVal * 0)pp)
+        }
+
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+
             Pen blackPen = new Pen(Color.Black);
 
-            int x = 100;
-            int y = 50;
+            Point point = new Point((this.Width - 100) /  2, (this.Height - 100) / 2);
 
-            float size = Convert.ToSingle(200);
-            float scale = size / 206;
+            Star testStar = new Star(point, 100, 15, 50);
 
-            PointF[] starPoints = new PointF[10];
-            starPoints[0] = new PointF(0 * scale + x, 74 * scale + y);
-            starPoints[1] = new PointF(79 * scale + x, 74 * scale + y);
-            starPoints[2] = new PointF(103 * scale + x, 0 * scale + y);
-            starPoints[3] = new PointF(127 * scale + x, 74 * scale + y);
-            starPoints[4] = new PointF(206 * scale + x, 74 * scale + y);
-            starPoints[5] = new PointF(142 * scale + x, 122 * scale + y);
-            starPoints[6] = new PointF(166 * scale + x, 196 * scale + y);
-            starPoints[7] = new PointF(103 * scale + x, 150 * scale + y);
-            starPoints[8] = new PointF(39 * scale + x, 196 * scale + y);
-            starPoints[9] = new PointF(64 * scale + x, 122 * scale + y);
+            testStar.SetPoints();
 
-            e.Graphics.DrawPolygon(blackPen, starPoints);
-            e.Graphics.DrawRectangle(blackPen, x, y, size, size); // to test position and size
+            PointF[] testStarPts = testStar.starPoints;
+
+
+            e.Graphics.DrawPolygon(blackPen, testStarPts);
         }
     }
 }
